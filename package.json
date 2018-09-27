@@ -1,19 +1,23 @@
 {
-  "name": "practice_nodejs_apps",
+  "name": "ad_product",
   "version": "1.0.0",
-  "description": "a little test app",
+  "description": "product review and product service app",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "ninjas"
+    "ad"
   ],
   "author": "me",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.2.17",
+    "morgan": "^1.9.1",
     "node-fetch": "^2.2.0"
   }
 }
