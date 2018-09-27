@@ -9,19 +9,19 @@ const fetch = require('node-fetch')
 var cors = require('cors');
 
 var mysql = require('mysql');
-var product = require('./product.js');
+//var product = require('./product.js');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
 
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
-var config = require('./config'); // get our config file
-var User = require('./models/users'); // get our mongoose model
+var config = require('../config'); // get our config file
+var User = require('../models/users'); // get our mongoose model
 
 // =======================
 // configuration =========
 // =======================
-const PORT = process.env.PORT || 3007; // used to create, sign, and verify tokens
+const PORT = process.env.PORT || 3017;
 mongoose.connect(config.database); // connect to database
 app.set('superSecret', config.secret); // secret variable
 app.use(cors());
@@ -130,6 +130,12 @@ apiRoutes.post('/authenticate', function(req, res) {
   });
 });
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // route middleware to verify a token
 apiRoutes.use(function(req, res, next) {
   // check header or url parameters or post parameters for token
@@ -233,29 +239,30 @@ app.delete('/api/review/:product_id', (req, res) => {
     });
   });
 });
-
-function get(url) {
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then(res => res.json())
-      .then(data => resolve(data))
-      .catch(err => reject(err))
-  })
-}
-
-app.get('/api/product/:product_id', (req, res) => {
-  Promise.all([
-      get(`https://www.adidas.co.uk/api/products/${req.params.product_id}`),
-      get(`http://localhost:${PORT}/api/review/${req.params.product_id}?token=${req.query.token}`),
-    ]).then(([product, {
-        rows
-      }]) =>
-      res.send({
-        reviews: rows,
-        product: product
-      }))
-    .catch(err => res.send('Ops, something has gone wrong'))
-})
+//
+// function get(url) {
+//   return new Promise((resolve, reject) => {
+//     fetch(url)
+//       .then(res => res.json())
+//       .then(data => resolve(data))
+//       .catch(err => reject(err))
+//   })
+// }
+//
+// app.get('/api/product/:product_id', (req, res) => {
+//   Promise.all([
+//       get(`https://www.adidas.co.uk/api/products/${req.params.product_id}`),
+//       get(`http://localhost:${PORT}/api/review/${req.params.product_id}?token=${req.query.token}`),
+//     ]).then(([product, {
+//         rows
+//       }]) =>
+//       res.send({
+//         reviews: rows,
+//         product: product
+//       }))
+//     .catch(err => res.send('Ops, something has gone wrong'))
+// })
 
 app.use(express.static(__dirname + '/'))
 app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`))
+module.exports = app;
