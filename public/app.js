@@ -6,6 +6,7 @@ const app = express()
 app.use(express.json());
 const path = require('path')
 const fetch = require('node-fetch')
+var cors = require('cors');
 
 var mysql = require('mysql');
 var product = require('./product.js');
@@ -23,6 +24,7 @@ var User = require('./models/users'); // get our mongoose model
 const PORT = process.env.PORT || 3007; // used to create, sign, and verify tokens
 mongoose.connect(config.database); // connect to database
 app.set('superSecret', config.secret); // secret variable
+app.use(cors());
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -84,7 +86,6 @@ app.get('/setup', function(req, res) {
 // get an instance of the router for api routes
 var apiRoutes = express.Router();
 
-
 // route to authenticate a user (POST http://localhost:<PORT>/api/authenticate)
 apiRoutes.post('/authenticate', function(req, res) {
 
@@ -101,7 +102,6 @@ apiRoutes.post('/authenticate', function(req, res) {
         message: 'Authentication failed. User not found.'
       });
     } else if (user) {
-
       // check if password matches
       if (user.password != req.body.password) {
         res.json({
@@ -127,19 +127,15 @@ apiRoutes.post('/authenticate', function(req, res) {
         });
       }
     }
-
   });
 });
 
 // route middleware to verify a token
 apiRoutes.use(function(req, res, next) {
-
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
   // decode token
   if (token) {
-
     // verifies secret and checks exp
     jwt.verify(token, app.get('superSecret'), function(err, decoded) {
       if (err) {
@@ -155,7 +151,6 @@ apiRoutes.use(function(req, res, next) {
     });
 
   } else {
-
     // if there is no token
     // return an error
     return res.status(403).send({
@@ -180,7 +175,7 @@ apiRoutes.get('/users', function(req, res) {
   });
 });
 
-// apply the routes to our application with the prefix /api
+// apply the routes to AD application with the prefix /api
 app.use('/api', apiRoutes);
 
 app.get('/api/review/:product_id', (req, res) => {
@@ -221,7 +216,7 @@ app.put('/api/review/:product_id', (req, res) => {
   };
   con.query('update product_reviews set ? where product_id = ?', [data, id], function(err, rows) {
     if (err) throw err;
-    console.log('Updatation of existing product reviews was successfull');
+    console.log('Updation of existing product reviews was successfull');
     res.json({
       rows
     });
@@ -251,13 +246,13 @@ function get(url) {
 app.get('/api/product/:product_id', (req, res) => {
   Promise.all([
       get(`https://www.adidas.co.uk/api/products/${req.params.product_id}`),
-      get(`http://localhost:${PORT}/api/review/${req.params.product_id}`),
+      get(`http://localhost:${PORT}/api/review/${req.params.product_id}?token=${req.query.token}`),
     ]).then(([product, {
         rows
       }]) =>
       res.send({
-        product: product,
-        reviews: rows
+        reviews: rows,
+        product: product
       }))
     .catch(err => res.send('Ops, something has gone wrong'))
 })
