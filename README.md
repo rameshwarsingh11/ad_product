@@ -108,3 +108,17 @@ GET /api/review/AC7836?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dH
 VJK8GE45vUktqB9li6Z_7ySgr_pjnVsTEFG1zTgBc 200 4.438 ms - 75
 GET /api/product/AC7836?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MDQwMzk0LCJleHAiOjE1MzgwNDE4MzR9.a
 AVJK8GE45vUktqB9li6Z_7ySgr_pjnVsTEFG1zTgBc 200 1203.193 ms - 11521
+
+==================
+Trouble shooting for MySQL Connectivity.
+Issue. :
+
+Error: ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; consider upgrading MySQL client
+
+Solution : 
+Run below command in MySQL workbench ( terminal )--
+
+use mysql;
+alter user 'root'@'localhost' identified with mysql_native_password by ‘rootrogot’;
+flush privileges;
+
