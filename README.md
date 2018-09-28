@@ -109,7 +109,7 @@ VJK8GE45vUktqB9li6Z_7ySgr_pjnVsTEFG1zTgBc 200 4.438 ms - 75
 GET /api/product/AC7836?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MDQwMzk0LCJleHAiOjE1MzgwNDE4MzR9.a
 AVJK8GE45vUktqB9li6Z_7ySgr_pjnVsTEFG1zTgBc 200 1203.193 ms - 11521
 
-==================
+===================================================================
 Trouble shooting for MySQL Connectivity.
 Issue. :
 
@@ -122,3 +122,16 @@ use mysql;
 alter user 'root'@'localhost' identified with mysql_native_password by ‘rootrogot’;
 flush privileges;
 
+================================================================
+
+Docker imgages. DockerFile config is added into development branch.
+Run below command to build image :
+
+docker build -t product-service
+docker build -t product-review-service
+
+Start your services in a container :
+docker run -d -p 3000:3000 product-service
+docker run -d -p 3000:3000 product-review-service
+
+=================================================================
