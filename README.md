@@ -135,3 +135,10 @@ docker run -d -p 3000:3000 product-service
 docker run -d -p 3000:3000 product-review-service
 
 =================================================================
+
+Run test cases :
+
+Go to test folder. Run below command in your terminal :
+mocha product.test.js
+
+=================================================================
