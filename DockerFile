@@ -1,4 +1,5 @@
 FROM node:6-alpine
+LABEL authors="Rameshwar Singh"
 
 RUN mkdir /app
 WORKDIR /app
