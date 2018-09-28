@@ -119,7 +119,7 @@ Solution :
 Run below command in MySQL workbench ( terminal )--
 
 use mysql;
-alter user 'root'@'localhost' identified with mysql_native_password by ‘rootrogot’;
+alter user 'root'@'localhost' identified with mysql_native_password by ‘rootrooot’;
 flush privileges;
 
 ================================================================
