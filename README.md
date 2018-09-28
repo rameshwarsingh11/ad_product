@@ -38,13 +38,13 @@ Sample response :
 }
 
 ============
-
+Note : Please check the ports in the code beofre hitting the APIs in postman.
 
 The Product APIs will be running at below ports :
-a. http://localhost:3021/api/product/{product_id}?token={}
+a. http://localhost:3029/api/product/{product_id}?token={}
 
 Sample hit :
-http://localhost:3021/api/product/AC7836?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MDQ3NTQxLCJleHAiOjE1MzgwNDg5ODF9.sa-HZCe8P98Fq0mO35P85LFkxj2vqeJcBXSG935IjZ0
+http://localhost:3029/api/product/AC7836?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MDQ3NTQxLCJleHAiOjE1MzgwNDg5ODF9.sa-HZCe8P98Fq0mO35P85LFkxj2vqeJcBXSG935IjZ0
 
 Response :
 {
@@ -71,10 +71,10 @@ Response :
         ...
         
 
-b. http://localhost:3017/api/review/{product_id}
+b. http://localhost:3027/api/review/{product_id}
 
 Sample hit :
-http://localhost:3017/api/review/AC7836
+http://localhost:3027/api/review/AC7836
 Header Values
 x-access-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MDQ2MDA4LCJleHAiOjE1MzgwNDc0NDh9.t9Dh_fXd6cCzu_EFw2-rRlsCm4NYxRwCR5MieLLcGeY
 
@@ -92,22 +92,20 @@ Sample reponse :
 }
 
 Nodemon response :
-Rameshwar-Singh:public home-v3$ nodemon app.js
-
+Rameshwar-Singh:public home-v3$ nodemon server.js
 [nodemon] 1.17.4
 [nodemon] to restart at any time, enter `rs`
 [nodemon] watching: *.*
-[nodemon] starting `node app.js`
-(node:49785) DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new par
+[nodemon] starting `node server.js`
+(node:51282) DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new par
 ser, pass option { useNewUrlParser: true } to MongoClient.connect.
-Listening on http://localhost:3007
+Listening on http://localhost:3027
+Listening on http://localhost:3028
+Express server for product service listening on port 3029
 Connected!
-Result: [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]
 Inside review get call :::
-GET /api/review/AC7836?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MDQwMzk0LCJleHAiOjE1MzgwNDE4MzR9.aA
-VJK8GE45vUktqB9li6Z_7ySgr_pjnVsTEFG1zTgBc 200 4.438 ms - 75
-GET /api/product/AC7836?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MDQwMzk0LCJleHAiOjE1MzgwNDE4MzR9.a
-AVJK8GE45vUktqB9li6Z_7ySgr_pjnVsTEFG1zTgBc 200 1203.193 ms - 11521
+GET /api/review/AC7836?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MTEwNTc2LCJleHAiOjE1MzgxMTIwMTZ9.FX
+WXRULaJwJY3EaW7GNVZ7DFvbu777sl82c_6mf7rcw 200 2.930 ms - 75
 
 ===================================================================
 Trouble shooting for MySQL Connectivity.
