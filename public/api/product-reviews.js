@@ -21,7 +21,7 @@ var User = require('../models/users'); // get our mongoose model
 // =======================
 // configuration =========
 // =======================
-const PORT = process.env.PORT || 3017;
+const PORT = process.env.PORT || 3027;
 mongoose.connect(config.database); // connect to database
 app.set('superSecret', config.secret); // secret variable
 app.use(cors());
@@ -239,29 +239,6 @@ app.delete('/api/review/:product_id', (req, res) => {
     });
   });
 });
-//
-// function get(url) {
-//   return new Promise((resolve, reject) => {
-//     fetch(url)
-//       .then(res => res.json())
-//       .then(data => resolve(data))
-//       .catch(err => reject(err))
-//   })
-// }
-//
-// app.get('/api/product/:product_id', (req, res) => {
-//   Promise.all([
-//       get(`https://www.adidas.co.uk/api/products/${req.params.product_id}`),
-//       get(`http://localhost:${PORT}/api/review/${req.params.product_id}?token=${req.query.token}`),
-//     ]).then(([product, {
-//         rows
-//       }]) =>
-//       res.send({
-//         reviews: rows,
-//         product: product
-//       }))
-//     .catch(err => res.send('Ops, something has gone wrong'))
-// })
 
 app.use(express.static(__dirname + '/'))
 app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`))
