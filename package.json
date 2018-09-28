@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "product review and product service app",
   "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
     "ad"
   ],
@@ -20,5 +17,14 @@
     "mongoose": "^5.2.17",
     "morgan": "^1.9.1",
     "node-fetch": "^2.2.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "mocha": "^2.4.5"
+  },
+  "scripts": {
+    "start": "SET NODE_ENV=dev && node server.js",
+    "test": "mocha --timeout 10000"
   }
 }
