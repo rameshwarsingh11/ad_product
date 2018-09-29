@@ -1,53 +1,14 @@
-# ad_product
-Microservices to retrieve product details along with product reviews
+# Product Service & Product Review Service 
 
-Tools required : Node js, express, Mongo db, MySQL, Any code editor
+These micorservices will help retrive the product details and reviews together. Synchrnous microservice architecture approach has been ued to create two microservices Product Service & Product review service. Both can run independently on a different ports. FOr authentication mongo db & jwb token sign implementation is done inside app routes.
 
-Synchrnous microservice architecture approach has been ued to create two microservices Product Service & Product review service. Both can run independently on a different ports. FOr authentication mongo db & jwb token sign implementation is done inside app routes.
+## Microservice 1 : /api/product/{product_id}
 
-How to Run :
+Endpoint : http://localhost:3029/api/product/AC7836
 
-1. Download MySQL Community server
-2. Run MYSQL server 
-3. Run the below script :
+Sample Request : http://localhost:3029/api/product/AC7836?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MTEwNTc2LCJleHAiOjE1MzgxMTIwMTZ9.FXWXRULaJwJY3EaW7GNVZ7DFvbu777sl82c_6mf7rcw
 
-create database product;
-create table product_reviews (product_id varchar(20) not null, avg_review_score float ,num_of_reviews int, primary key (product_id));
-insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('M20324',4.5,53);
-insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('AC7836’,5.0,20);
-insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('C77154',3.3,101);
-insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('BB5476',3.9,200)
-insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('B42000',2.8,45);
-
-4. go to your node project dir
-5. npm install
-6. nodemon start.js
-
-
-Generate your token :
-http://localhost:3017/api/authenticate
-Body Values as below --
-name : R Singh
-password : password
-
-Sample response :
-{
-    "success": true,
-    "message": "Enjoy your token!",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MDUxMzEwLCJleHAiOjE1MzgwNTI3NTB9.GZUH-C93JqVkgHGec9vifAdSgV5lLr46K6l_F-xUQg8"
-}
-
-============
-Note : Please check the ports in the code beofre hitting the APIs in postman.
-
-The Product APIs will be running at below ports :
-a. http://localhost:3029/api/product/{product_id}?token={}
-
-Sample hit :
-http://localhost:3029/api/product/AC7836?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MDQ3NTQxLCJleHAiOjE1MzgwNDg5ODF9.sa-HZCe8P98Fq0mO35P85LFkxj2vqeJcBXSG935IjZ0
-
-Response :
-{
+Sample Response : {
     "reviews": [
         {
             "product_id": "AC7836",
@@ -67,31 +28,74 @@ Response :
             "keywords": "Ultraboost Parley Shoes",
             "canonical": "//www.adidas.co.uk/ultraboost-parley-shoes/AC7836.html"
         },
-        .....
-        ...
-        
+        "view_list": [
+            {
+          ....
+          ......
+          ........
+          
 
-b. http://localhost:3027/api/review/{product_id}
+## Microservice 2 : /api/review/{product_id}
 
-Sample hit :
-http://localhost:3027/api/review/AC7836
-Header Values
-x-access-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MDQ2MDA4LCJleHAiOjE1MzgwNDc0NDh9.t9Dh_fXd6cCzu_EFw2-rRlsCm4NYxRwCR5MieLLcGeY
+Endpoint 1 : 
+### GET http://localhost:3027/api/review/C77155
+Sample Request : http://localhost:3027/api/review/C77155
 
-Note : you must generate a new token for the api calls.
+Header :
+x-acces-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MTEwNTc2LCJleHAiOjE1MzgxMTIwMTZ9.FXWXRULaJwJY3EaW7GNVZ7DFvbu777sl82c_6mf7rcw
 
-Sample reponse :
+Sample Response :
 {
-    "rows": [
-        {
-            "product_id": "AC7836",
-            "avg_review_score": 5,
-            "num_of_reviews": 20
-        }
-    ]
+    "rows": {
+        "fieldCount": 0,
+        "affectedRows": 1,
+        "insertId": 0,
+        "serverStatus": 2,
+        "warningCount": 0,
+        "message": "",
+        "protocol41": true,
+        "changedRows": 0
+    }
 }
 
-Nodemon response :
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+Below tools need to install and run the microservices :
+
+1. node v 4 or above
+2. express js
+3. node modules as per package.json
+4. MySQL Community server
+5. Mongo DB ( mlab )
+6. Any Code editor
+7. PostMan
+
+### Installing MYSQL
+
+Step 1 : Download MySQL Community Server 
+Step 2 : Open MySQL WorkBench
+Step 3 : Run below scripts :
+
+create database product;
+create table product_reviews (product_id varchar(20) not null, avg_review_score float ,num_of_reviews int, primary key (product_id));
+insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('M20324',4.5,53);
+insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('AC7836’,5.0,20);
+insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('C77154',3.3,101);
+insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('BB5476',3.9,200)
+insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('B42000',2.8,45);
+
+
+### Running the API
+
+Step 1. Download the zip file and extract in your local folder.
+Step 2 : Go to ad_product/public folder
+Step 3 : npm install
+Step 4 : nodemon server.js
+Step 5 : Check the sample message in node terminal :
 Rameshwar-Singh:public home-v3$ nodemon server.js
 [nodemon] 1.17.4
 [nodemon] to restart at any time, enter `rs`
@@ -107,20 +111,20 @@ Inside review get call :::
 GET /api/review/AC7836?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MTEwNTc2LCJleHAiOjE1MzgxMTIwMTZ9.FX
 WXRULaJwJY3EaW7GNVZ7DFvbu777sl82c_6mf7rcw 200 2.930 ms - 75
 
-===================================================================
-Trouble shooting for MySQL Connectivity.
-Issue. :
 
-Error: ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; consider upgrading MySQL client
+## Running the tests
 
-Solution : 
-Run below command in MySQL workbench ( terminal )--
+### Go to ad_product/test folder and run below command :
+ 
+mocha product.test.js
 
-use mysql;
-alter user 'root'@'localhost' identified with mysql_native_password by ‘rootrooot’;
-flush privileges;
+mocha product.reviews.test.js
 
-================================================================
+### Run PostMan 
+
+Hit the APIs as explained in the /development/ad_product/Documentation/PostMan/PostMan_Requests.xlsx
+
+## Deployment
 
 Docker imgages. DockerFile config is added into development branch.
 Run below command to build image :
@@ -132,11 +136,21 @@ Start your services in a container :
 docker run -d -p 3000:3000 product-service
 docker run -d -p 3000:3000 product-review-service
 
-=================================================================
+## Trouble shooting
 
-Run test cases :
+### Issue. :
 
-Go to test folder. Run below command in your terminal :
-mocha product.test.js
+#### Error: ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; consider upgrading MySQL client
 
-=================================================================
+##### Solution : 
+Run below command in MySQL workbench ( terminal )--
+
+use mysql;
+
+alter user 'root'@'localhost' identified with mysql_native_password by ‘rootrooot’;
+
+flush privileges;
+
+
+
+
