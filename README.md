@@ -1,6 +1,6 @@
 # Product Service & Product Review Service 
 
-These micorservices will help retrive the product details and product reviews. Synchrnous microservice architecture approach has been used to create these microservices. Both the services can run independently on different ports. For authentication mongo db & jwb token sign implementation is done using app routes.
+These micorservices will help retrive the product details and product reviews. Synchronous microservice architecture approach has been used to create these microservices. Both the services can run independently on different ports. For authentication mongo db & jwb token sign implementation is done using app routes.
 
 ## Microservice 1 : /api/product/{product_id}
 
@@ -81,23 +81,23 @@ Below tools need to be installed to run the microservices :
 ##### Step 3 : Run below scripts :
 
 ###### create database product;
-####### create table product_reviews (product_id varchar(20) not null, avg_review_score float ,num_of_reviews int, primary key (product_id));
-####### insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('M20324',4.5,53);
-####### insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('AC7836’,5.0,20);
-####### insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('C77154',3.3,101);
-####### insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('BB5476',3.9,200)
-####### insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('B42000',2.8,45);
+###### create table product_reviews (product_id varchar(20) not null, avg_review_score float ,num_of_reviews int, primary key (product_id));
+###### insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('M20324',4.5,53);
+###### insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('AC7836’,5.0,20);
+###### insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('C77154',3.3,101);
+###### insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('BB5476',3.9,200)
+###### insert into product_reviews ( product_id, avg_review_score, num_of_reviews ) values ('B42000',2.8,45);
 
 
 ### Running the API
 
-####### Step 1. Download the zip file and extract in your local folder.
-####### Step 2 : Go to ad_product/public folder
-####### Step 3 : npm install
-####### Step 4 : nodemon server.js
-####### Step 5 : Check the sample message in node terminal :
+###### Step 1. Download the zip file and extract in your local folder.
+###### Step 2 : Go to ad_product/public folder
+###### Step 3 : npm install
+###### Step 4 : nodemon server.js
+###### Step 5 : Check the sample message in node terminal :
 
-####### Rameshwar-Singh:public home-v3$ nodemon server.js
+###### Rameshwar-Singh:public home-v3$ nodemon server.js
 [nodemon] 1.17.4
 [nodemon] to restart at any time, enter `rs`
 [nodemon] watching: *.*
@@ -130,12 +130,12 @@ Hit the APIs as explained in the /development/ad_product/Documentation/PostMan/P
 Docker imgages. DockerFile config is added into development branch.
 ####### Run below command to build image :
 
-######## docker build -t product-service
-######## docker build -t product-review-service
+####### docker build -t product-service
+####### docker build -t product-review-service
 
 ###### Start your services in a container :
-######## docker run -d -p 3000:3000 product-service
-######## docker run -d -p 3000:3000 product-review-service
+####### docker run -d -p 3000:3000 product-service
+####### docker run -d -p 3000:3000 product-review-service
 
 ## Trouble shooting
 
