@@ -97,20 +97,20 @@ Below tools need to be installed to run the microservices :
 ###### Step 4 : nodemon server.js
 ###### Step 5 : Check the sample message in node terminal :
 
-###### Rameshwar-Singh:public home-v3$ nodemon server.js
-[nodemon] 1.17.4
-[nodemon] to restart at any time, enter `rs`
-[nodemon] watching: *.*
-[nodemon] starting `node server.js`
-(node:51282) DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new par
-ser, pass option { useNewUrlParser: true } to MongoClient.connect.
-Listening on http://localhost:3027
-Listening on http://localhost:3028
-Express server for product service listening on port 3029
-Connected!
-Inside review get call :::
-GET /api/review/AC7836?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MTEwNTc2LCJleHAiOjE1MzgxMTIwMTZ9.FX
-WXRULaJwJY3EaW7GNVZ7DFvbu777sl82c_6mf7rcw 200 2.930 ms - 75
+###### [nodemon] 1.17.4
+###### [nodemon] to restart at any time, enter `rs`
+###### [nodemon] watching: *.*
+###### [nodemon] starting `node server.js`
+###### (node:51282) DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new par ser, pass option { useNewUrlParser: true } to MongoClient.connect.
+###### Listening on http://localhost:3027
+###### Listening on http://localhost:3028
+###### Express server for product service listening on port 3029
+###### Connected!
+###### Inside review get call :::
+###### GET /api/review/AC7836?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MTEwNTc2LCJleHAiOjE1MzgxMTIwMTZ9.FX
+###### WXRULaJwJY3EaW7GNVZ7DFvbu777sl82c_6mf7rcw 200 2.930 ms - 75
+###### GET /api/product/AC7836? token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MTEwNTc2LCJleHAiOjE1MzgxMTIwMTZ9.FX
+###### WXRULaJwJY3EaW7GNVZ7DFvbu777sl82c_6mf7rcw 200 2.930 ms - 75
 
 
 ## Running the tests
@@ -128,14 +128,14 @@ Hit the APIs as explained in the /development/ad_product/Documentation/PostMan/P
 ## Deployment
 
 Docker imgages. DockerFile config is added into development branch.
-####### Run below command to build image :
+##### Run below command to build image :
 
-####### docker build -t product-service
-####### docker build -t product-review-service
+###### docker build -t product-service
+###### docker build -t product-review-service
 
-###### Start your services in a container :
-####### docker run -d -p 3000:3000 product-service
-####### docker run -d -p 3000:3000 product-review-service
+##### Start your services in a container :
+###### docker run -d -p 3000:3000 product-service
+###### docker run -d -p 3000:3000 product-review-service
 
 ## Trouble shooting
 
