@@ -46,16 +46,13 @@ x-acces-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0Ijo
 
 Sample Response :
 {
-    "rows": {
-        "fieldCount": 0,
-        "affectedRows": 1,
-        "insertId": 0,
-        "serverStatus": 2,
-        "warningCount": 0,
-        "message": "",
-        "protocol41": true,
-        "changedRows": 0
-    }
+    "rows": [
+        {
+            "product_id": "C77155",
+            "avg_review_score": 5,
+            "num_of_reviews": 20
+        }
+    ]
 }
 
 ## Getting Started
