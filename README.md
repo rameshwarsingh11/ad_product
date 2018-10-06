@@ -1,6 +1,6 @@
 # Product Service & Product Review Service 
 
-These micorservices will help retrive the product details and product reviews. Synchronous microservice architecture approach has been used to create these microservices. Both the services can run independently on different ports. For authentication mongo db & jwb token sign implementation is done using app routes.
+These micorservices will help retrive the product details and product reviews. Synchronous microservice architecture approach has been used to create these microservices. Both the services can run independently on different ports. For authentication mongo db & jwt token sign implementation is done using app routes.
 
 ## Microservice 1 : /api/product/{product_id}
 
