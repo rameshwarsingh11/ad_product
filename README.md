@@ -2,11 +2,27 @@
 
 These micorservices will help retrive the product details and product reviews. Synchronous microservice architecture approach has been used to create these microservices. Both the services can run independently on different ports. For authentication mongo db & jwt token sign implementation is done using app routes.
 
+## Generate JWT token : /api/authenticate
+
+Endpoint : http://localhost:3027/api/authenticate
+
+Sample Request : http://localhost:3027/api/authenticate
+Body content -
+name : Rsingh
+password : password
+
+Sample Response : 
+{
+    "success": true,
+    "message": "Enjoy your token!",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4ODcwODAzLCJleHAiOjE1Mzg4NzIyNDN9._dS6OUKQkwWntuKppGff-RJeKBG4S_IfJSSuuINd7AU"
+}
+
 ## Microservice 1 : /api/product/{product_id}
 
 Endpoint : http://localhost:3029/api/product/AC7836
 
-Sample Request : http://localhost:3029/api/product/AC7836?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MTEwNTc2LCJleHAiOjE1MzgxMTIwMTZ9.FXWXRULaJwJY3EaW7GNVZ7DFvbu777sl82c_6mf7rcw
+Sample Request : http://localhost:3029/api/product/AC7836?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4ODcwODAzLCJleHAiOjE1Mzg4NzIyNDN9._dS6OUKQkwWntuKppGff-RJeKBG4S_IfJSSuuINd7AU
 
 Sample Response : {
     "reviews": [
@@ -37,23 +53,103 @@ Sample Response : {
 
 ## Microservice 2 : /api/review/{product_id}
 
-### Endpoint 1 : GET /api/review/C77155
+### Endpoint 1 : GET /api/review/AC7836
 
-Sample Request : http://localhost:3027/api/review/C77155
+Sample Request : http://localhost:3027/api/review/AC7836
 
-Header :
-x-acces-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4MTEwNTc2LCJleHAiOjE1MzgxMTIwMTZ9.FXWXRULaJwJY3EaW7GNVZ7DFvbu777sl82c_6mf7rcw
+Headers :
+Content-Type : application/json
+x-acces-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4ODcwODAzLCJleHAiOjE1Mzg4NzIyNDN9._dS6OUKQkwWntuKppGff-RJeKBG4S_IfJSSuuINd7AU
 
 Sample Response :
 {
     "rows": [
         {
-            "product_id": "C77155",
+            "product_id": "AC7836",
             "avg_review_score": 5,
             "num_of_reviews": 20
         }
     ]
 }
+
+### Endpoint 2 : POST /api/review/
+
+Sample Request : http://localhost:3027/api/review/
+Headers :
+Content-Type : application/json
+x-access-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4ODcwODAzLCJleHAiOjE1Mzg4NzIyNDN9._dS6OUKQkwWntuKppGff-RJeKBG4S_IfJSSuuINd7AU
+
+Body :
+{
+"product_id" : "I891456",
+"avg_review_score" : 3.8,
+"num_of_reviews" : 116
+}
+
+Sample Response :
+{
+    "rows": {
+        "fieldCount": 0,
+        "affectedRows": 1,
+        "insertId": 0,
+        "serverStatus": 2,
+        "warningCount": 0,
+        "message": "",
+        "protocol41": true,
+        "changedRows": 0
+    }
+}
+
+
+### Endpoint 3 : PUT /api/review/{product_id}
+
+Sample Request : http://localhost:3027/api/review/I891456
+Headers :
+Content-Type : application/json
+x-access-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4ODcwODAzLCJleHAiOjE1Mzg4NzIyNDN9._dS6OUKQkwWntuKppGff-RJeKBG4S_IfJSSuuINd7AU
+
+Body :
+{
+"product_id" : "I891456",
+"avg_review_score" : 4.2,
+"num_of_reviews" : 200
+}
+
+Sample response :
+{
+    "rows": {
+        "fieldCount": 0,
+        "affectedRows": 1,
+        "insertId": 0,
+        "serverStatus": 2,
+        "warningCount": 0,
+        "message": "(Rows matched: 1  Changed: 1  Warnings: 0",
+        "protocol41": true,
+        "changedRows": 1
+    }
+}
+
+### Endpoint 4 : DELETE /api/review/{product_id}
+
+Sample Request : http://localhost:3027/api/review/I891456
+Headers :
+Content-Type : application/json
+x-access-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNTM4ODcwODAzLCJleHAiOjE1Mzg4NzIyNDN9._dS6OUKQkwWntuKppGff-RJeKBG4S_IfJSSuuINd7AU
+
+Sample response :
+{
+    "rows": {
+        "fieldCount": 0,
+        "affectedRows": 1,
+        "insertId": 0,
+        "serverStatus": 2,
+        "warningCount": 0,
+        "message": "",
+        "protocol41": true,
+        "changedRows": 0
+    }
+}
+
 
 ## Getting Started
 
