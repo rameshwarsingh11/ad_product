@@ -2,6 +2,18 @@
 
 These micorservices will help retrive the product details and product reviews. Synchronous microservice architecture approach has been used to create these microservices. Both the services can run independently on different ports. For authentication mongo db & jwt token sign implementation is done using app routes.
 
+## Setup user in Mongo : /setup
+
+Sample request : http://localhost:3027/setup
+Sample Response : {
+    "success": true
+}
+
+The above endpoint will setup below user in Mongo :
+    name: 'R Singh',
+    password: 'password',
+    admin: true 
+
 ## Generate JWT token : /api/authenticate
 
 Endpoint : http://localhost:3027/api/authenticate
